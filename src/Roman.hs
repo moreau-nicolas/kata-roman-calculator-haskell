@@ -57,12 +57,12 @@ use L (X:X:X:X   : rest) = X:L : use L rest
 use D (C:C:C:C:C : rest) = D   : use D rest
 use D (C:C:C:C   : rest) = C:D : use D rest
 
-use X (V:V   : rest)  = X   : use X rest
-use X (V:I:V : rest)  = I:X : use X rest
-use C (L:L   : rest)  = C   : use C rest
-use C (L:X:L : rest)  = X:C : use C rest
-use M (D:D   : rest)  = M   : use M rest
-use M (D:C:D : rest)  = C:M : use M rest
+use X (V:V   : rest) = X   : use X rest
+use X (V:I:V : rest) = I:X : use X rest
+use C (L:L   : rest) = C   : use C rest
+use C (L:X:L : rest) = X:C : use C rest
+use M (D:D   : rest) = M   : use M rest
+use M (D:C:D : rest) = C:M : use M rest
 
 use a (b : rest) = b : use a rest
 use _ []         = []
