@@ -22,15 +22,6 @@ a + b = expand a ++ expand b
       & reverse.sort
       & normalize
 
-isRepeatable :: RomanDigit -> Bool
-isRepeatable I = True
-isRepeatable V = False
-isRepeatable X = True
-isRepeatable L = False
-isRepeatable C = True
-isRepeatable D = False
-isRepeatable M = True
-
 expand :: RomanNumeral -> RomanNumeral
 expand [I,I,X]     = [V,I,I,I]
 expand [I,I,I,C]   = [L,X,X,X,X] ++ [V,I,I]
@@ -40,8 +31,12 @@ expand [I,I,I,X,X] = [X,V,I,I]
 expand [I,I,X,X]   = [X,V,I,I,I]
 expand [I,X,X]     = [X,V,I,I,I,I]
 
-expand (i:v : rest) | v > i && (not . isRepeatable) v = [i,i,i,i]          ++ expand rest
-expand (i:x : rest) | x > i && isRepeatable x         = succ i : [i,i,i,i] ++ expand rest
+expand (I:V : rest) = [I,I,I,I]   ++ expand rest
+expand (X:L : rest) = [X,X,X,X]   ++ expand rest
+expand (C:D : rest) = [C,C,C,C]   ++ expand rest
+expand (I:X : rest) = [V,I,I,I,I] ++ expand rest
+expand (X:C : rest) = [L,X,X,X,X] ++ expand rest
+expand (C:M : rest) = [D,C,C,C,C] ++ expand rest
 
 expand (a : rest) = a : expand rest
 expand []         = []
